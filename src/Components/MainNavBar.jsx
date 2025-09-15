@@ -1,23 +1,47 @@
-import { Link } from "react-router"
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router";
 
 function MainNavBar() {
   return (
-
-
-    <div>
-      <nav>
-        <div className="nav-links">
-          <Link to="/"><button>Home</button></Link>
-          <Link to="/dog"><button>Nuestros Peludos </button></Link>
-          <Link to="/adopt"><button> Adoptar </button></Link>
-          <Link to="/profile"><button> Perfil </button></Link>
-          <Link to="/signup"><button>Sign Up</button></Link>
-          
-        </div>
-      </nav>
-    </div>
-
-    
-  )
+    <Navbar bg="primary" expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand as={Link} to="/Home">
+          Huellitas
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
+            <Nav.Link as={Link} to="/dog">
+              Dogs
+            </Nav.Link>
+            <Nav.Link as={Link} to="/adoption">
+              Adoption
+            </Nav.Link>
+            <NavDropdown title="User Area" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/my-profile">
+                My Profile
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/">
+                My adoption requests
+              </NavDropdown.Item>
+               <NavDropdown.Item as={Link} to="/signup">
+                Sign Up
+              </NavDropdown.Item>
+               <NavDropdown.Item as={Link} to="/login">
+                Log In
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
-export default MainNavBar
+
+export default MainNavBar;
