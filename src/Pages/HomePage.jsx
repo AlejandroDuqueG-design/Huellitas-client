@@ -3,7 +3,9 @@ function HomePage() {
 
     <div>
       
- <h2>Bienvenidos a Huellitas</h2>
+ <h5>Bienvenidos a Huellitas</h5>
+
+ <p>Uno de nuestros peluditos esta esperando por ti</p>
       
       </div>
     

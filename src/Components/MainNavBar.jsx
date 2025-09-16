@@ -22,23 +22,26 @@ function MainNavBar() {
               Home
             </Nav.Link>
             <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/dog">
-              Dogs
+              Nuestros Peluditos
             </Nav.Link>
             <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/adoption">
-              Adoption
+              Adopción
             </Nav.Link>
-            <NavDropdown title="User Area" id="basic-nav-dropdown">
+            <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/aboutus">
+              Sobre Nosotros
+            </Nav.Link>
+            <NavDropdown title="Area de Usuario" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/my-profile">
-                My Profile
+                Mi Perfil
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/">
-                My adoption requests
+              <NavDropdown.Item as={Link} to="/myadoption-request">
+                Mis Solicitudes de Adopción
               </NavDropdown.Item>
                <NavDropdown.Item as={Link} to="/signup">
-                Sign Up
+                Registrarse
               </NavDropdown.Item>
                <NavDropdown.Item as={Link} to="/login">
-                Log In
+                Entrar
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

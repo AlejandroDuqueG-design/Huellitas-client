@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import axios from "axios";
 import service from "../services/config.services";
 
 function MyProfilePage() {
@@ -16,8 +15,11 @@ function MyProfilePage() {
     }
   };
 
-  return
+  return(
+
+    <div>PROFILE</div>
+  )
   
-  <div>PROFILE</div>;
+  
 }
 export default MyProfilePage;

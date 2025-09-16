@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import service from "../services/config.services";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 
 function DogDetailsPage(_id, name, age, breed, sex, size, adoptionRequestState, image, entryDate, description ) {
   const [dogDetails, setDogDetails] = useState([]);
@@ -38,12 +38,13 @@ function DogDetailsPage(_id, name, age, breed, sex, size, adoptionRequestState, 
       <h5>Size: {dogDetails.size}</h5>
       <h5>Adoption Request State: {dogDetails.adoptionRequestState}</h5>
       <h5>Image: {dogDetails.image}</h5>
-      <h5>Entry Date: {DogDetailsPage.entryDate}</h5>
+      <h5>Entry Date: {dogDetails.entryDate}</h5>
       <h5>Description: {dogDetails.description}</h5>
 
-      <Link to={"/adoption-request"}><Button>Adoptar</Button></Link>
+      <Link to={`/adoption-request/${params.dogId}`}><Button>Adoptar</Button></Link>
 
     </Card>
+
     </>
   );
 }

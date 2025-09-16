@@ -2,23 +2,6 @@ import { useEffect, useState } from "react";
 
 function AdoptionInfoPage() {
 
-  const [adoptionL, setAdoptionList] = useState([]);
-
-  useEffect(()=>{
-
-    getData()
-
-  }, [])
-
-  const getData = async ()=> {
-    try {
-      const response = await service.get (`${import.meta.env.VITE_SERVER_URL}/api/adoption`)
-      console.log("Comprobando lista de Adopciones", response)
-      setAdoptionList(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   
   return (
 
