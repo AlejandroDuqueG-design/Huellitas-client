@@ -12,7 +12,7 @@ function MainNavBar() {
   return (
     <Navbar bg="primary" expand="lg" className="bg-body-tertiary" expanded={expanded}>
       <Container>
-        <Navbar.Brand as={Link} to="/Home">
+        <Navbar.Brand as={Link} to="/">
           Huellitas
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={()=>setExpanded((prevState)=> !prevState)}/>

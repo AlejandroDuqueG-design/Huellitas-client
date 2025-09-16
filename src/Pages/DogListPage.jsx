@@ -17,7 +17,7 @@ function DogListPage() {
 
   const getData = async ()=> {
     try {
-      const response = await service.get (`${import.meta.env.VITE_SERVER_URL}/dog`)
+      const response = await service.get (`${import.meta.env.VITE_SERVER_URL}/api/dog`)
       console.log("Comprobando lista de Perros", response)
       setDogList(response.data)
     } catch (error) {
@@ -29,7 +29,7 @@ function DogListPage() {
 
     <div className="d-flex flex-column gap-4 my-4 align-items-center">
       {dogList.map((eachDog)=> {
-        return <DogCard key={eachDog.id} {...eachDog}/>
+        return <DogCard key={eachDog._id} {...eachDog}/>
       })}
 
       <div>

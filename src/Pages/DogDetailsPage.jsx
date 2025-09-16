@@ -1,12 +1,13 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import DogDetailsCard from "../Components/DogDetailsCard";
+import { Link, useParams } from "react-router";
 import service from "../services/config.services";
+import { Button, Card } from "react-bootstrap";
 
-function DogDetailsPage() {
-  const [dogDetails, setdogDetails] = useState([]);
-  const params = useParams;
+function DogDetailsPage(_id, name, age, breed, sex, size, adoptionRequestState, image, entryDate, description ) {
+  const [dogDetails, setDogDetails] = useState([]);
+  const params = useParams();
+
+  console.log(params)
 
   useEffect(() => {
     getData();
@@ -14,21 +15,35 @@ function DogDetailsPage() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`${import.meta.env.VITE_SERVER_URL}/dog/${params.dogId}`);
-      setdogDetails(response.data);
+      const response = await service.get(`/dog/${params.dogId}`);
+      console.log("Get Data")
+      console.log("Obteniendo detalles del perro", response)
+      setDogDetails(response.data);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <>
-      <div>
-        <h5>See more details about me</h5>
-      </div>
+    
+      <h5>Detalles de {dogDetails.name}</h5>
 
-      <div className="">
-        <DogDetailsCard {...dogDetails} />
-      </div>
+
+      <Card className="text-center" style={{ width: "25rem" }}>
+      
+      <h5>Name: {dogDetails.name}</h5>
+      <h5>Age: {dogDetails.age}</h5>
+      <h5>Breed: {dogDetails.breed}</h5>
+      <h5>Sex: {dogDetails.sex}</h5>
+      <h5>Size: {dogDetails.size}</h5>
+      <h5>Adoption Request State: {dogDetails.adoptionRequestState}</h5>
+      <h5>Image: {dogDetails.image}</h5>
+      <h5>Entry Date: {DogDetailsPage.entryDate}</h5>
+      <h5>Description: {dogDetails.description}</h5>
+
+      <Link to={"/adoption-request"}><Button>Adoptar</Button></Link>
+
+    </Card>
     </>
   );
 }
