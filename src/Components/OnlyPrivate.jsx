@@ -1,15 +1,16 @@
 import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router";
+import { AuthContext } from "../Context/auth.context";
 
 
 function OnlyPrivate(props) {
   const { isLoggedIn } = useContext(AuthContext);
+  console.log(isLoggedIn)
 
   if (!isLoggedIn) {
-    return;
+    return <Navigate to="/login"/>;
   } else {
-    return isLoggedIn ? props.children : <Navigate to="/login"/>
+    return props.children  
   }
 }
 export default OnlyPrivate;

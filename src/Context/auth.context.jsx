@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import service from "../services/config.services";
 
 // Context component (Component that send the states contexts and functions)
 const AuthContext = createContext()
@@ -8,9 +9,9 @@ const AuthContext = createContext()
 function AuthWrapper (props) {
 
     // Context where states and functions will be
-    const [isLogedIn, setisLogedIn] = useState(false);
-    const [loggedUserId, setloggedUserId] = useState(null);
-    const [isAuthenticating, setisAuthenticating] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loggedUserId, setLoggedUserId] = useState(null);
+    const [isAuthenticating, setIsAuthenticating] = useState(true);
 
     useEffect (() => {
 
@@ -21,33 +22,27 @@ function AuthWrapper (props) {
 
     const authenticateUser = async () => {
         //This is a function that sends the token to the backend to verify that is valid and receive info about that token owner
-        const authToken = localStorage.getItem("authToken")
-
         try {
-           const response = await axios.get (`${import.meta.env.VITE_SERVER_URL}/api/auth/verify`, {
-            headers: {
-                authorization: `Bearer ${authToken}`
-            }
-           })
+            const response = await service.get("/auth/verify")
            
            // If we get to this point, it means that the backedn validated the token
            console.log(response)
-           setisLogedIn(true)
-           setloggedUserId(response.data._id)
-           setisAuthenticating (false)
+           setIsLoggedIn(true)
+           setLoggedUserId(response.data._id)
+           setIsAuthenticating (false)
         
         } catch (error) {
             //If we go into the catch it means that the token was not validated by the backend
            console.log(error) 
-           setisLogedIn(false)
-           setloggedUserId(null)
-           setisAuthenticating (false)
+           setIsLoggedIn(false)
+           setLoggedUserId(null)
+           setIsAuthenticating (false)
         }
     }
 
 
     const passedContext = {
-        isLogedIn,
+        isLoggedIn,
         loggedUserId,
         authenticateUser
     }

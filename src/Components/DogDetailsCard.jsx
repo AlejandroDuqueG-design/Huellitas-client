@@ -1,6 +1,7 @@
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 
-function DogDetailsCard() {
+function DogDetailsCard({id, name, age, breed, sex, size, adoptionStatus, image, entryDate, description}) {
+
 
 
   return (

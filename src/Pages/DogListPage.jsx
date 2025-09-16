@@ -7,7 +7,7 @@ import DogCard from "../Components/DogCard";
 function DogListPage() {
 
 
-  const [dogList, setdogList]  = useState([]);
+  const [dogList, setDogList]  = useState([]);
 
   useEffect(() => {
 
@@ -19,7 +19,7 @@ function DogListPage() {
     try {
       const response = await service.get (`${import.meta.env.VITE_SERVER_URL}/dog`)
       console.log("Comprobando lista de Perros", response)
-      setdogList(response.data)
+      setDogList(response.data)
     } catch (error) {
       console.log(error)
     }
