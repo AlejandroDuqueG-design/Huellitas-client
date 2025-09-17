@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import service from "../services/config.services";
+import { Container } from "react-bootstrap";
 
 function MyProfilePage() {
   useEffect(() => {
@@ -15,11 +16,14 @@ function MyProfilePage() {
     }
   };
 
-  return(
+  return <div>
+    <Container className="text-center">
 
-    <div>PROFILE</div>
-  )
-  
-  
+    <h5>Perfil</h5>
+    <p>Area personal</p>
+
+    </Container>
+    
+  </div>;
 }
 export default MyProfilePage;

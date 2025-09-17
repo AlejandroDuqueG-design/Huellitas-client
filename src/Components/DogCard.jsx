@@ -2,17 +2,18 @@ import { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router";
 
-function DogCard({_id, name, age, breed, sex}) {
+function DogCard({_id, name, age, breed, sex, image}) {
 
 
   
   return (
 
     <>
-    <h4>Nuestros Peluditos</h4>
+    
     <Card className="text-center" style={{ width: "18rem" }}>
-      
-      <h5>Name: {name}</h5>
+      <Card.Header style={{backgroundColor: "#60EDE1"}}> <h5>{name}</h5></Card.Header>
+      <Card.Img variant="top"></Card.Img>
+     
       <h5>Age: {age}</h5>
       <h5>Breed: {breed}</h5>
       <h5>Sex: {sex}</h5>

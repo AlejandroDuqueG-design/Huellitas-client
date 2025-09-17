@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import {Link} from "react-router";
 import service from "../services/config.services";
 
@@ -48,21 +48,23 @@ function SignupPage() {
 
   return (
     <div>
+      <Container className="text-center">
+
       <h6>Formulario de Registro</h6>
 
       <Form>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
           <Form.Label column sm="2">
-            Name
+            Nombre
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="name" placeholder="Name"/>
+            <Form.Control type="name" placeholder="Nombre Completo"/>
           </Col>
         </Form.Group>
 
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
           <Form.Label column sm="2">
-            Email
+            Correo Electronico
           </Form.Label>
           <Col sm="10">
             <Form.Control type="email" placeholder="Email"/>
@@ -71,16 +73,17 @@ function SignupPage() {
 
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
           <Form.Label column sm="2">
-            Password
+            Contraseña
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control type="password" placeholder="Contraseña" />
           </Col>
         </Form.Group>
       </Form>
       <Link to={"/"}>
-      <Button variant="light"> Registrarse </Button>
+      <Button variant="primary"> Registrarse </Button>
       </Link>
+      </Container>
     </div>
   );
 }

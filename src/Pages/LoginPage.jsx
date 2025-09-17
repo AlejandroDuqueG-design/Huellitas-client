@@ -53,10 +53,10 @@ function LoginPage() {
     <div>
       <h6>Formulario de Acceso</h6>
 
-      <Form onSubmit={handleLogin}>
+      <Form className="text-center" onSubmit={handleLogin}>
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
           <Form.Label column sm="2">
-            Email
+            Correo Electronico
           </Form.Label>
           <Col sm="10">
             <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange}/>
@@ -65,13 +65,13 @@ function LoginPage() {
 
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
           <Form.Label column sm="2">
-            Password
+            Contraseña
           </Form.Label>
           <Col sm="10">
             <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
           </Col>
         </Form.Group>
-      <Button variant="light" type="submit" > Enviar </Button>
+      <Button variant="primary" type="submit" > Enviar </Button>
       </Form>
     </div>
   );

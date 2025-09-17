@@ -28,6 +28,7 @@ function DogListPage() {
   return (
 
     <div className="d-flex flex-column gap-4 my-4 align-items-center">
+      <h4>Nuestros Peluditos</h4>
       {dogList.map((eachDog)=> {
         return <DogCard key={eachDog._id} {...eachDog}/>
       })}

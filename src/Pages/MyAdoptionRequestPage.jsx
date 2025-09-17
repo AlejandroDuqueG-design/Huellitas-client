@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 
 function MyAdoptionRequestPage() {
 
@@ -22,7 +23,16 @@ function MyAdoptionRequestPage() {
 
 
   return (
-    <div>Mis solicitudes de Adopción</div>
+
+    <div>
+        <Container className="text-center">
+
+        <h6>Mis Solicitudes de Adopción</h6>
+        <p>Este apartado contiene un listado de todas las solicitudes de adopción que ha hecho en nuestro refugio</p>
+
+        </Container>
+        
+        </div>
   )
 }
 export default MyAdoptionRequestPage

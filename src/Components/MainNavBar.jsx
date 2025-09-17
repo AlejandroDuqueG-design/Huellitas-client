@@ -4,16 +4,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router";
+import logo from "../assets/logo-huellitas.png"
 
 function MainNavBar() {
 
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Navbar bg="primary" expand="lg" className="bg-body-tertiary" expanded={expanded}>
+    <Navbar style={{backgroundColor: "#68EBF7"}} expand="lg" expanded={expanded}>
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Huellitas
+        <img src={logo} width="55" height="50" className="d-inline-block align-center" alt="" /> Huellitas{" "}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={()=>setExpanded((prevState)=> !prevState)}/>
         <Navbar.Collapse id="basic-navbar-nav">
@@ -21,9 +22,14 @@ function MainNavBar() {
             <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/dog">
-              Nuestros Peluditos
-            </Nav.Link>
+            <NavDropdown title="Perritos" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/new-dog">
+                Crear un nuevo registro
+              </NavDropdown.Item>
+            <NavDropdown.Item onClick={()=> setExpan-ded(false)} as={Link} to="/dog">
+              Ver a todos Nuestros Peluditos
+            </NavDropdown.Item>
+             </NavDropdown>
             <Nav.Link onClick={()=> setExpanded(false)} as={Link} to="/adoption">
               Adopción
             </Nav.Link>
