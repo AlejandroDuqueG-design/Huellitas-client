@@ -11,15 +11,15 @@ function DogCard({_id, name, age, breed, sex, image}) {
     <>
     
     <Card className="text-center" style={{ width: "18rem" }}>
-      <Card.Header style={{backgroundColor: "#68EBF7"}}> <h6>{name}</h6></Card.Header>
-      <Card.Img variant="top"></Card.Img>
-      <Card.Body><h6>Age: {age}</h6></Card.Body>
-      <Card.Body><h6>Breed: {breed}</h6> </Card.Body>
-      <Card.Body><h6>Sex: {sex}</h6> </Card.Body>
+      <Card.Header className="text-white" style={{backgroundColor: "#2a8891ff"}}> <h4>{name}</h4></Card.Header>
+      <Card.Img variant="top" src={image}></Card.Img>
+      <Card.Body><h6>Edad: {age}</h6>
+      <h6>Raza: {breed}</h6> 
+      <h6>Sexo: {sex}</h6> </Card.Body>
       
       
 
-      <Link to={`/dog-details/${_id}`}><Button style={{backgroundColor: "#55989eff"}}>Conoceme!</Button></Link>
+      <Link to={`/dog-details/${_id}`}><Button className="mb-2" style={{backgroundColor: "#2a8891ff"}}>Conoceme!</Button></Link>
 
     </Card>
     </>

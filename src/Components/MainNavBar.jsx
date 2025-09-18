@@ -11,7 +11,7 @@ function MainNavBar() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Navbar style={{backgroundColor: "#68EBF7"}} expand="lg" expanded={expanded}>
+    <Navbar style={{backgroundColor: "#2a8891ff"}} expand="lg" expanded={expanded}>
       <Container>
         <Navbar.Brand as={Link} to="/">
         <img src={logo} width="55" height="50" className="d-inline-block align-center" alt="" /> Huellitas{" "}

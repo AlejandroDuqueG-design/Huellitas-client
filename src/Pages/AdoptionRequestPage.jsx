@@ -1,78 +1,90 @@
 import { useEffect, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import { Link, useNavigate, useParams } from "react-router";
+import { Button, Card, Container, Form } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router";
 import service from "../services/config.services";
 
 function AdoptionRequestPage() {
-
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
   const params = useParams();
-  console.log("Comprobando los params", params);
 
   const [dogDetails, setDogDetails] = useState({});
-
-  const [dog, setDog] = useState("");
-  const [user, setuser] = useState("");
-  const [adoptionRequestState, setAdoptionRequestState] = useState("");
+  const [user, setUser] = useState({});
   const [requestDate, setRequestDate] = useState("");
-  const [resolutionDate, setResolutionDate] = useState("");
   const [comments, setComments] = useState("");
 
-const handleSubmit = async (event) => {
-event.preventDefault();
+  // Cargar los datos del perro al entrar en la página
+  useEffect(() => {
+    const getDog = async () => {
+      try {
+        const response = await service.get(`/dog/${params.dogId}`);
+        setDogDetails(response.data);
+      } catch (error) {
+        console.log("Error subiendo los datos del perro:", error);
+      }
+    };
+    getDog();
+  }, [params.dogId]);
 
-const newAdoptionRequest = {
-  dog:dog,
-  user:user,
-  adoptionRequestState:adoptionRequestState,
-  requestDate:requestDate,
-  resolutionDate: resolutionDate,
-  comments: comments
-}
-console.log("Comprobando el:", newAdoptionRequest)
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-try {
-  const response = await service.post ("/adoption", newAdoptionRequest)
-  navigate ("/myadoption-request")
-} catch (error) {
-  console.log(error)
-}
-}
+    const newAdoptionRequest = {
+      dog: dogDetails._id,
+      user: user._id,
+      requestDate,
+      comments,
+      adoptionRequestState: "Pendiente",
+      resolutionDate: null,
+    };
+
+    console.log("Datos de la nueva solicitud:", newAdoptionRequest);
+
+    try {
+      const response = await service.post("/adoption", newAdoptionRequest);
+      console.log("Solicitud creada correctamente:", response);
+      navigate("/myadoption-request");
+    } catch (error) {
+      console.log("Error creando solicitud:", error.response?.data || error);
+    }
+  };
 
   return (
-    <div>
-      <p>Solicitud de Adopción para: {dogDetails.name}</p>
-      <p>{dogDetails.breed}</p>
-      <p> de {dogDetails.age} años</p>
+    <Container className="text-center mt-5">
+      <h4>Adoptar a:</h4>
+      <Card className="p-4 mt-3">
+        <Card.Title className="mb-2">
+        <p>{dogDetails.name}, {dogDetails.age} años</p>
+        <p></p>
+        
+        </Card.Title>
 
-      <Card>
         <Form onSubmit={handleSubmit}>
-          {/* <Form.Group>
-            <Form.Label>
-              <Form.Control type="text" name="name" placeholder="Adoption Request State"value={adoptionRequestState} onChange={(event) => setAdoptionRequestState(event.target.value)}></Form.Control>
-            </Form.Label>
-          </Form.Group> */}
-          <Form.Group>
-            <Form.Label>
-              <Form.Control type="date" name="RequestDate" placeholder="Request Date" value={requestDate} onChange={(event) => setRequestDate(event.target.value)}></Form.Control>
-            </Form.Label>
+          <Form.Group className="mb-3">
+            <Form.Label>Fecha de solicitud</Form.Label>
+            <Form.Control
+              type="date"
+              value={requestDate}
+              onChange={(e) => setRequestDate(e.target.value)}
+            />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>
-              <Form.Control type="date" name="name" placeholder="Resolution Date" value={resolutionDate} onChange={(event) => setResolutionDate(event.target.value)}></Form.Control>
-            </Form.Label>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Comentarios</Form.Label>
+            <Form.Control
+              type="text"
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              placeholder="Comentarios opcionales"
+            />
           </Form.Group>
-          <Form.Group>
-            <Form.Label>
-              <Form.Control type="text" name="name" placeholder="Comments" value={comments} onChange={(event) => setComments(event.target.value)}></Form.Control>
-            </Form.Label>
-          </Form.Group>
-        <Button type="submit">Enviar</Button> <Button >Cancelar</Button>
+
+          <Button type="submit" variant="primary">
+            Enviar solicitud
+          </Button>
         </Form>
-        <Link to={`/edit-adoption/${params.adoptionId}`}><Button>Editar</Button></Link>
       </Card>
-    </div>
+    </Container>
   );
 }
+
 export default AdoptionRequestPage;

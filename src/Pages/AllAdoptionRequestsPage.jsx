@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import service from "../services/config.services";
-import { Link, useParams } from "react-router";
 import AdoptionCard from "../Components/AdoptionCard";
 
-function MyAdoptionRequestPage() {
-  const params = useParams ();
+function AllAdoptionRequestsPage() {
+
   const [myAdoptionRequest, setMyAdoptionRequest] = useState([]);
 
   useEffect(() => {
@@ -14,14 +13,13 @@ function MyAdoptionRequestPage() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`/adoption/${params.userId}`);
+      const response = await service.get(`/adoption/user/userId`);
       console.log("Mis solicitudes de Adopción", response);
       setMyAdoptionRequest(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-
 
   return (
     <div>
@@ -41,5 +39,6 @@ function MyAdoptionRequestPage() {
       </Container>
     </div>
   );
+
 }
-export default MyAdoptionRequestPage;
+export default AllAdoptionRequestsPage

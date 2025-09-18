@@ -16,6 +16,8 @@ import AboutUsPage from "./Pages/AboutUsPage";
 import DogCreatePage from "./Pages/DogCreatePage";
 import EditDogPage from "./Pages/EditDogPage";
 import EditAdoptionRequestPage from "./Pages/EditAdoptionRequestPage";
+import ErrorPage from "./Pages/ErrorPage";
+import AllAdoptionRequestsPage from "./Pages/AllAdoptionRequestsPage";
 
 
 function App() {
@@ -36,10 +38,14 @@ function App() {
         <Route path="/edit-adoption/:adoptionId" element= { <EditAdoptionRequestPage/> }/>
         <Route path="/aboutus" element= { < AboutUsPage/> }/>
         <Route path="/adoption-request/:dogId" element= { <AdoptionRequestPage/> }/>
+        <Route path="/adoption/user/:userId" element= { <AllAdoptionRequestsPage/> }/>
         <Route path="/user" element= { <UserListPage/> }/>
         <Route path="/user-details/:userId" element= { <UserDetailsPage/>}/> 
         <Route path="/my-profile" element={<OnlyPrivate> < MyProfilePage /> </OnlyPrivate>} />
-        <Route path="/myadoption-request" element={<OnlyPrivate> < MyAdoptionRequestPage /> </OnlyPrivate>} />
+        <Route path="/myadoption-request" element={ < MyAdoptionRequestPage /> } />
+
+        <Route path="*" element={<ErrorPage/>}/>
+        
       </Routes>
 
     </div>
