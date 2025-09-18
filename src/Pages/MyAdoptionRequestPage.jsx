@@ -14,7 +14,7 @@ function MyAdoptionRequestPage() {
 
   const getData = async () => {
     try {
-      const response = await service.get(`/adoption/${params.userId}`);
+      const response = await service.get(`/adoption`);
       console.log("Mis solicitudes de Adopción", response);
       setMyAdoptionRequest(response.data);
     } catch (error) {

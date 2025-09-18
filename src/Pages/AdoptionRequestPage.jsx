@@ -8,7 +8,6 @@ function AdoptionRequestPage() {
   const params = useParams();
 
   const [dogDetails, setDogDetails] = useState({});
-  const [user, setUser] = useState({});
   const [requestDate, setRequestDate] = useState("");
   const [comments, setComments] = useState("");
 
@@ -30,7 +29,7 @@ function AdoptionRequestPage() {
 
     const newAdoptionRequest = {
       dog: dogDetails._id,
-      user: user._id,
+      // user: user._id,
       requestDate,
       comments,
       adoptionRequestState: "Pendiente",

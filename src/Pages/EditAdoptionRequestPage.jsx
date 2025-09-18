@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import service from "../services/config.services";
-import { Button, Card, Container, Form, Spinner } from "react-bootstrap";
+import { Button, Card, Container, Form} from "react-bootstrap";
 
 function EditAdoptionRequestPage() {
-  const [dog, setDog] = useState("");
-  const [user, setUser] = useState("");
+  const [dogName, setDogName] = useState({});
+  const [userName, setUserName] = useState({});
   const [adoptionRequestState, setAdoptionRequestState] = useState("");
   const [requestDate, setRequestDate] = useState("");
   const [resolutionDate, setResolutionDate] = useState("");
@@ -21,12 +21,14 @@ function EditAdoptionRequestPage() {
 
   const getData = async () => {
     try {
+      console.log("Comprobando Params", params.adoptionId)
       const response = await service.get(`/adoption/${params.adoptionId}`);
+      console.log("Adoption", response.data)
 
-      setDog(response.data.dog);
-      setUser(response.data.user);
+      setDogName(response.data.dog.name);
+      setUserName(response.data.user.name);
       setAdoptionRequestState(response.data.adoptionRequestState);
-      setRequestDate(response.data.requestDate);
+      setRequestDate(response.data.createdAt.slice(0,10));
       setResolutionDate(response.data.resolutionDate);
       setComments(response.data.comments);
 
@@ -39,18 +41,20 @@ function EditAdoptionRequestPage() {
     event.preventDefault();
 
     const updateAdoptionRequest = {
-      dog: dog._id, 
-      user: user._id,
+      dog: dogName,
+      user: userName,
       adoptionRequestState,
       requestDate,
       resolutionDate,
       comments,
     };
 
+    console.log("Comprobando objeto", updateAdoptionRequest)
+
     try {
       const response = await service.patch(`/adoption/${params.adoptionId}`, updateAdoptionRequest);
       console.log("Solicitud de adopción actualizada:", response);
-      navigate("/adoptions"); // Redirige a la lista de adopciones
+      navigate("/adoption");
     } catch (error) {
       console.log("Error actualizando la solicitud:", error);
     }
@@ -76,12 +80,12 @@ function EditAdoptionRequestPage() {
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Perro</Form.Label>
-            <Form.Control type="text" value={dog} onChange={(e) => setDog(e.target.value)} readOnly/>
+            <Form.Control type="text" value={dogName} onChange={(e) => setDogName(e.target.value)} readOnly/>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
-            <Form.Control type="text" value={user} onChange={(e) => setUser(e.target.value)} readOnly/>
+            <Form.Control type="text" value={userName} onChange={(e) => setUserName(e.target.value)} readOnly/>
           </Form.Group>
 
           <Form.Group className="mb-3">
