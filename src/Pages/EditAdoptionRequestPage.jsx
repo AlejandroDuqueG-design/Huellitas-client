@@ -4,6 +4,8 @@ import service from "../services/config.services";
 import { Button, Card, Container, Form} from "react-bootstrap";
 
 function EditAdoptionRequestPage() {
+  const [dogId, setDogId] = useState("");
+  const [userId, setUserId] = useState("");
   const [dogName, setDogName] = useState({});
   const [userName, setUserName] = useState({});
   const [adoptionRequestState, setAdoptionRequestState] = useState("");
@@ -25,7 +27,9 @@ function EditAdoptionRequestPage() {
       const response = await service.get(`/adoption/${params.adoptionId}`);
       console.log("Adoption", response.data)
 
+      setDogId(response.data.dog._id);  
       setDogName(response.data.dog.name);
+      setUserId(response.data.user._id)
       setUserName(response.data.user.name);
       setAdoptionRequestState(response.data.adoptionRequestState);
       setRequestDate(response.data.createdAt.slice(0,10));
@@ -41,8 +45,8 @@ function EditAdoptionRequestPage() {
     event.preventDefault();
 
     const updateAdoptionRequest = {
-      dog: dogName,
-      user: userName,
+      dog: dogId,
+      user: userId,
       adoptionRequestState,
       requestDate,
       resolutionDate,
@@ -54,7 +58,7 @@ function EditAdoptionRequestPage() {
     try {
       const response = await service.patch(`/adoption/${params.adoptionId}`, updateAdoptionRequest);
       console.log("Solicitud de adopción actualizada:", response);
-      navigate("/adoption");
+      navigate("/myadoption-request");
     } catch (error) {
       console.log("Error actualizando la solicitud:", error);
     }
@@ -66,7 +70,7 @@ function EditAdoptionRequestPage() {
     try {
       const response = await service.delete(`/adoption/${params.adoptionId}`);
       console.log("Solicitud de adopción eliminada:", response);
-      navigate("/adoptions");
+      navigate("/myadoption-request");
     } catch (error) {
       console.log("Error eliminando la solicitud:", error);
     }

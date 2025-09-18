@@ -1,20 +1,10 @@
 import { Button, Card } from "react-bootstrap";
 import { Link, useParams } from "react-router";
-import service from "../services/config.services";
+import { useState } from "react";
 
 function AdoptionCard({ _id, dog, user, adoptionRequestState, requestDate, resolutionDate, comments }) {
 
-  const handleDelete = async (event) => {
-    event.preventDefault();
 
-    try {
-      const response = await service.delete(`/adoption/${_id}`);
-      console.log("Solicitud de adopción eliminada:", response);
-      navigate("/adoptions");
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <div>
@@ -25,8 +15,8 @@ function AdoptionCard({ _id, dog, user, adoptionRequestState, requestDate, resol
         </Card.Header>
         <Card.Img variant="top"></Card.Img>
         <Card.Body>
-          <h6>Perro: {dog}</h6>
-          <h6>Usuario: {user}</h6>
+          <h6>Perro: {dog.name}</h6>
+          <h6>Usuario: {user.name}</h6>
           <h6>Estado Solicitud: {adoptionRequestState}</h6>
           <h6>Fecha Solicitud: {requestDate}</h6>
           <h6>Fecha Resolución: {resolutionDate}</h6>
@@ -38,7 +28,6 @@ function AdoptionCard({ _id, dog, user, adoptionRequestState, requestDate, resol
             Editar
           </Button>
         </Link>
-    
       </Card>
     </div>
   );
