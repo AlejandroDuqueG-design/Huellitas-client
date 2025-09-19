@@ -1,6 +1,6 @@
 import { useState } from "react";
 import service from "../services/config.services";
-import { Card, Form } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
 function DogCreatePage() {
@@ -73,7 +73,7 @@ function DogCreatePage() {
   return (
     <Card className="text-center mt-3">
       <Card.Title className="mt-3">
-        <h5>Nueva alta para Perrito</h5>
+        <h4 className="fw-bold">Nueva alta para Perrito</h4>
       </Card.Title>
 
       <Form className="text-center" onSubmit={handleSubmit}>
@@ -145,7 +145,11 @@ function DogCreatePage() {
         {isUploading ? <h3>... uploading image</h3> : null}
          {imageUrl ? (<div><img src={imageUrl} alt="img" width={200} /></div>) : null}
 
-        <button type="submit"> Registrar</button>
+        <Button type="submit" style={{
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
+            }}> Registrar</Button>
       </Form>
     </Card>
   );

@@ -102,10 +102,14 @@ function EditAdoptionRequestPage() {
             <Form.Control type="text" value={comments} onChange={(e) => setComments(e.target.value)} />
           </Form.Group>
 
-          <Button type="submit" variant="primary" className="me-2">
+          <Button type="submit" className="me-2" style={{
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
+            }}>
             Guardar
           </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button variant="outline-secondary" onClick={handleDelete}>
             Eliminar
           </Button>
         </Form>

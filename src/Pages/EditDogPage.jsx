@@ -203,9 +203,13 @@ function EditDogPage() {
                 ></Form.Control>
               </Form.Label>
             </Form.Group>
-            <Button type="submit">Guardar</Button>
+            <Button className="me-1 mt-2" type="submit" style={{
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
+            }}>Guardar</Button>
+          <Button className="me-1 mt-2" variant="outline-secondary" onClick={handleDelete}>Eliminar</Button>
           </Form>
-          <Button onClick={handleDelete}>Eliminar</Button>
         </Card>
       </Container>
     </div>

@@ -22,9 +22,13 @@ function DogCard({ _id, name, age, breed, sex, image }) {
           <h6>Edad: {age}</h6>
           <h6>Raza: {breed}</h6>
           <h6>Sexo: {sex}</h6>
-          <div className="mt-auto text-center mt-2">
+          <div className="text-center mt-3">
             <Link to={`/dog-details/${_id}`}>
-              <Button style={{ backgroundColor: "#2a8891ff" }}>
+              <Button style={{
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
+            }}>
                 Conoceme!
               </Button>
             </Link>

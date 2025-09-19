@@ -77,7 +77,11 @@ function AdoptionRequestPage() {
             />
           </Form.Group>
 
-          <Button type="submit" variant="primary">
+          <Button type="submit" style={{
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
+            }}>
             Enviar solicitud
           </Button>
         </Form>

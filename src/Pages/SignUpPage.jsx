@@ -83,9 +83,9 @@ function SignupPage() {
 
             <div className="d-grid gap-2">
               <Button type="submit" size="lg" style={{
-              backgroundColor: "#2a8891ff", // tu color personalizado
-              borderColor: "#2a8891ff", // opcional: para que borde combine
-              color: "white", // color del texto
+              backgroundColor: "#2a8891ff",
+              borderColor: "#2a8891ff", 
+              color: "white", 
             }}>
                 Registrarse
               </Button>

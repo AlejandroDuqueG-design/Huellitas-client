@@ -26,9 +26,9 @@ function DogListPage() {
   return (
     //FILTRO
 
-    <div className="d-flex flex-column gap-2 my-4 align-items-center">
-      <h4 style={{ fontWeight: 400 }}>Nuestros Peluditos</h4>
-      <h6 style={{ fontWeight: 400 }}>Aqui puedes encontrar a todos los perritos que tenemos en este momento en el refugio</h6>
+    <div className="d-flex flex-column gap-1 my-4 align-items-center">
+      <h3 className="fw-bold"> 🐶 Nuestros Peluditos</h3>
+      <p className="text-muted" >Aqui puedes encontrar a todos los perritos que tenemos en este momento en el refugio</p>
       <Row className="justify-content-center">
         <Col xs={40}>
           <Form.Select size="lg" className="mt-1" name="sex" value={selectedBySex} onChange={(event) => setSelectedBySex(event.target.value)}>

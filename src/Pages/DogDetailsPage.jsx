@@ -26,7 +26,7 @@ function DogDetailsPage(_id, name, age, breed, sex, size, adoptionStatus, image,
     <>
       <Card className="text-center align-self-center mt-5 mx-auto" style={{ maxWidth: "600px", backgroundColor: "#cfecf5ff" }}>
         <Card.Header className="mb-2 mt-2">
-          <h5>Información de {dogDetails.name}</h5>
+          <h3 className="fw-bold">Información de {dogDetails.name}</h3>
         </Card.Header>
         <Card.Body>
           <Card.Img
