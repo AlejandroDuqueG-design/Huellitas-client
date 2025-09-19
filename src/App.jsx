@@ -3,7 +3,7 @@ import HomePage from "./Pages/HomePage";
 import DogListPage from "./Pages/DogListPage";
 import MyProfilePage from "./Pages/MyProfilePage";
 import MainNavBar from "./Components/MainNavBar";
-import LoginPage from "./Pages/LogInPage";
+import LoginPage from "./Pages/LoginPage";
 import SignupPage from "./Pages/SignUpPage";
 import OnlyPrivate from "./Components/OnlyPrivate";
 import DogDetailsPage from "./Pages/DogDetailsPage";
