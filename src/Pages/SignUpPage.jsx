@@ -47,7 +47,7 @@ function SignupPage() {
 
   return (
     <div>
-      <Container className="text-center">
+      <Container className="text-center mt-5">
         <h6>Formulario de Registro</h6>
 
         <Form onSubmit={handleSignup}>

@@ -4,12 +4,11 @@ import { useNavigate } from "react-router";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { Button } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import { AuthContext } from "../Context/auth.context";
 import service from "../services/config.services";
 
 function LoginPage() {
-
   const { authenticateUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -28,51 +27,60 @@ function LoginPage() {
       email,
       password,
     };
-    console.log(userCredentials)
+    console.log(userCredentials);
     try {
       const response = await service.post(`${import.meta.env.VITE_SERVER_URL}/api/auth/login`, userCredentials);
       console.log(response);
 
-      localStorage.setItem("authToken", response.data.authToken)
+      localStorage.setItem("authToken", response.data.authToken);
 
       await authenticateUser();
 
-      navigate("/")
-
+      navigate("/");
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 400) {
-        setErrorMessage(error.response.data.errorMessage)
-      }   else {
-        navigate("/error")
+        setErrorMessage(error.response.data.errorMessage);
+      } else {
+        navigate("/error");
       }
     }
   };
 
   return (
     <div>
-      <h6>Formulario de Acceso</h6>
+      <Container className="mt-5">
+        <Card>
+          <Card.Title className="mt-3 text-center">
+            <h6>Formulario de Acceso</h6>
+          </Card.Title>
 
-      <Form className="text-center" onSubmit={handleLogin}>
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-          <Form.Label column sm="2">
-            Correo Electronico
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange}/>
-          </Col>
-        </Form.Group>
+          <Form className="text-center" onSubmit={handleLogin}>
+            <Form.Group className="mb-3" controlId="formPlaintextEmail">
+              <Form.Label column sm="2">
+                Correo Electronico
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+              </Col>
+            </Form.Group>
 
-        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-          <Form.Label column sm="2">
-            Contraseña
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
-          </Col>
-        </Form.Group>
-      <Button variant="primary" type="submit" > Enviar </Button>
-      </Form>
+            <Form.Group className="mb-3" controlId="formPlaintextPassword">
+              <Form.Label column sm="2">
+                Contraseña
+              </Form.Label>
+              <Col sm="10">
+                <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+              </Col>
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              {" "}
+              Enviar{" "}
+            </Button>
+            {errorMessage && <p>{errorMessage}</p>}
+          </Form>
+        </Card>
+      </Container>
     </div>
   );
 }
