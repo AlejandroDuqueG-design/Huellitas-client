@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { Button, Container } from "react-bootstrap";
+import { Button, Card, Container } from "react-bootstrap";
 import service from "../services/config.services";
 
 function SignupPage() {
@@ -46,45 +46,55 @@ function SignupPage() {
   };
 
   return (
-    <div>
-      <Container className="text-center mt-5">
-        <h6>Formulario de Registro</h6>
+<Container className="d-flex justify-content-center align-items-center min-vh-100">
+      <Card className="p-4 shadow-lg" style={{ maxWidth: "500px", width: "100%", borderRadius: "10px", backgroundColor: "#f8f9fa" }}>
+        <Card.Body>
+          <h4 className="text-center mb-4" style={{ fontWeight: 500 }}>Formulario de Registro</h4>
 
-        <Form onSubmit={handleSignup}>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="2">
-              Nombre
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control type="text" placeholder="Nombre Completo" value={name} onChange={handleNameChange} />
-            </Col>
-          </Form.Group>
+          <Form onSubmit={handleSignup}>
+            <Form.Group as={Row} className="mb-3" controlId="formName">
+              <Form.Label column sm="4" className="fw-bold">
+                Nombre
+              </Form.Label>
+              <Col sm="8">
+                <Form.Control type="text" placeholder="Nombre Completo" value={name} onChange={handleNameChange} />
+              </Col>
+            </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="2">
-              Correo Electronico
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
-            </Col>
-          </Form.Group>
+            <Form.Group as={Row} className="mb-3" controlId="formEmail">
+              <Form.Label column sm="4" className="fw-bold">
+                Correo
+              </Form.Label>
+              <Col sm="8">
+                <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+              </Col>
+            </Form.Group>
 
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-            <Form.Label column sm="2">
-              Contraseña
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control type="password" placeholder="Contraseña" value={password} onChange={handlePasswordChange} />
-            </Col>
-          </Form.Group>
-          <Button type="submit" variant="primary">
-            {" "}
-            Registrarse{" "}
-          </Button>
-          {errorMessage && <p>{errorMessage}</p>}
-        </Form>
-      </Container>
-    </div>
+            <Form.Group as={Row} className="mb-4" controlId="formPassword">
+              <Form.Label column sm="4" className="fw-bold">
+                Contraseña
+              </Form.Label>
+              <Col sm="8">
+                <Form.Control type="password" placeholder="Contraseña" value={password} onChange={handlePasswordChange} />
+              </Col>
+            </Form.Group>
+
+            {errorMessage && <p className="text-danger text-center mb-3">{errorMessage}</p>}
+
+            <div className="d-grid gap-2">
+              <Button type="submit" size="lg" style={{
+              backgroundColor: "#2a8891ff", // tu color personalizado
+              borderColor: "#2a8891ff", // opcional: para que borde combine
+              color: "white", // color del texto
+            }}>
+                Registrarse
+              </Button>
+            </div>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
+
 export default SignupPage;

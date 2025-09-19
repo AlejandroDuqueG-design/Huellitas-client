@@ -48,40 +48,58 @@ function LoginPage() {
   };
 
   return (
-    <div>
-      <Container className="mt-5">
-        <Card>
-          <Card.Title className="mt-3 text-center">
-            <h6>Formulario de Acceso</h6>
+  <Container className="d-flex justify-content-center align-items-center min-vh-100" >
+      <Card className="p-4 shadow-lg" style={{ maxWidth: "450px", width: "100%", borderRadius: "10px", backgroundColor: "#f8f9fa" }}>
+        <Card.Body>
+          <Card.Title className="text-center mb-4">
+            <h4 style={{ fontWeight: 500 }}>Formulario de Acceso</h4>
           </Card.Title>
 
-          <Form className="text-center" onSubmit={handleLogin}>
-            <Form.Group className="mb-3" controlId="formPlaintextEmail">
-              <Form.Label column sm="2">
-                Correo Electronico
+          <Form onSubmit={handleLogin}>
+            <Form.Group as={Row} className="mb-3" controlId="formEmail">
+              <Form.Label column sm="4" className="fw-bold">
+                Correo
               </Form.Label>
-              <Col sm="10">
-                <Form.Control type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+              <Col sm="8">
+                <Form.Control
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
               </Col>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formPlaintextPassword">
-              <Form.Label column sm="2">
+            <Form.Group as={Row} className="mb-4" controlId="formPassword">
+              <Form.Label column sm="4" className="fw-bold">
                 Contraseña
               </Form.Label>
-              <Col sm="10">
-                <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+              <Col sm="8">
+                <Form.Control
+                  type="password"
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
               </Col>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              {" "}
-              Enviar{" "}
-            </Button>
-            {errorMessage && <p>{errorMessage}</p>}
+
+            {errorMessage && <p className="text-danger text-center mb-3">{errorMessage}</p>}
+
+            <div className="d-grid gap-2">
+              <Button type="submit" size="lg" style={{
+              backgroundColor: "#2a8891ff", // tu color personalizado
+              borderColor: "#2a8891ff", // opcional: para que borde combine
+              color: "white", // color del texto
+            }}>
+                Enviar
+              </Button>
+            </div>
           </Form>
-        </Card>
-      </Container>
-    </div>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
+
 export default LoginPage;

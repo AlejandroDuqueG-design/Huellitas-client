@@ -26,11 +26,12 @@ function DogListPage() {
   return (
     //FILTRO
 
-    <div className="d-flex flex-column gap-4 my-4 align-items-center">
-      <h4>Nuestros Peluditos</h4>
+    <div className="d-flex flex-column gap-2 my-4 align-items-center">
+      <h4 style={{ fontWeight: 400 }}>Nuestros Peluditos</h4>
+      <h6 style={{ fontWeight: 400 }}>Aqui puedes encontrar a todos los perritos que tenemos en este momento en el refugio</h6>
       <Row className="justify-content-center">
-        <Col xs={20}>
-          <Form.Select className="mt-3" name="sex" value={selectedBySex} onChange={(event) => setSelectedBySex(event.target.value)}>
+        <Col xs={40}>
+          <Form.Select size="lg" className="mt-1" name="sex" value={selectedBySex} onChange={(event) => setSelectedBySex(event.target.value)}>
             <option value="">Filtrar Perritos</option>
             <option value="Macho">Macho</option>
             <option value="Hembra">Hembra</option>
@@ -38,12 +39,15 @@ function DogListPage() {
         </Col>
       </Row>
 
-      <div className="d-flex flex-column flex-lg-row flex-lg-wrap gap-4 my-4 align-items-center align-items-lg-stretch ms-5">
-        {dogList.map((eachDog) => {
-          return <DogCard key={eachDog._id} {...eachDog} />;
-        })}
-      </div>
-
+      <Row className="g-4 my-4 mx-3">
+  {dogList.map((eachDog) => {
+    return (
+      <Col key={eachDog._id} xs={12} sm={6} md={4} lg={3}>
+        <DogCard {...eachDog} />
+      </Col>
+    );
+  })}
+</Row>
       <div>
         <Link to="/dog-details"></Link>
       </div>
