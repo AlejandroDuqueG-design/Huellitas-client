@@ -6,6 +6,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router";
 import logo from "../assets/logo-huellitas.png"
 
+
 function MainNavBar() {
 
   const [expanded, setExpanded] = useState(false);
@@ -14,7 +15,7 @@ function MainNavBar() {
     <Navbar style={{backgroundColor: "#2a8891ff"}} expand="lg" expanded={expanded}>
       <Container>
         <Navbar.Brand as={Link} to="/">
-        <img src={logo} width="50" height="50" className="d-inline-block align-center" alt="" /> HUELLITAS{" "}
+        <img src={logo} width="50" height="45" className="d-inline-block align-center" alt="" /> HUELLITAS{" "}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={()=>setExpanded((prevState)=> !prevState)}/>
         <Navbar.Collapse id="basic-navbar-nav">
